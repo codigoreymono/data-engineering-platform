@@ -11,10 +11,3 @@ class Customer(BaseModel):
     state: str
     postal_code: str
     created_at: datetime
-
-
-class CustomerPage(BaseModel):
-    data: list[Customer]
-    page: int
-    page_size: int
-    total: int

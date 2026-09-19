@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Query
 
 from services.commerce_api.generators.customers import generate_customers
-from services.commerce_api.schemas.customer import CustomerPage
+from services.commerce_api.schemas.customer import Customer
+from services.commerce_api.schemas.page import Page
 
 router = APIRouter(
     prefix="/customers",
@@ -11,15 +12,15 @@ router = APIRouter(
 CUSTOMERS = generate_customers(count=100, seed=42)
 
 
-@router.get("", response_model=CustomerPage)
+@router.get("", response_model=Page[Customer])
 def get_customers(
     page: int = Query(default=1, ge=1),
     page_size: int = Query(default=20, ge=1, le=100),
-) -> CustomerPage:
+) -> Page[Customer]:
     start = (page - 1) * page_size
     end = start + page_size
 
-    return CustomerPage(
+    return Page[Customer](
         data=CUSTOMERS[start:end],
         page=page,
         page_size=page_size,
