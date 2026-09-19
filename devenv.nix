@@ -21,7 +21,7 @@
 
     initialDatabases = [
       {
-        name = "data_lab";
+        name = "data_platform";
       }
     ];
   };

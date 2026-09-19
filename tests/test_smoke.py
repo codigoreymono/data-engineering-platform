@@ -1,5 +1,5 @@
-import data_lab
+import data_platform
 
 
 def test_package_import():
-    assert data_lab.__name__ == "data_lab"
+    assert data_platform.__name__ == "data_platform"
