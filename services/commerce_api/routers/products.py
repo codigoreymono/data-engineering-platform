@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Query
 
-from services.commerce_api.generators.products import generate_products
+from services.commerce_api.dataset import PRODUCTS
 from services.commerce_api.schemas.page import Page
 from services.commerce_api.schemas.product import Product
 
@@ -8,8 +8,6 @@ router = APIRouter(
     prefix="/products",
     tags=["products"],
 )
-
-PRODUCTS = generate_products(count=50, seed=42)
 
 
 @router.get("", response_model=Page[Product])
